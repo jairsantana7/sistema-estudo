@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Servico;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 
 class ServicoController extends Controller
 
@@ -16,7 +17,7 @@ class ServicoController extends Controller
 
         return view('servicos.index',
         [
-            'servico' => $servicos
+            'servicos' => $servicos
         ]);
     }
 
@@ -34,8 +35,6 @@ class ServicoController extends Controller
 
        return redirect()->route('servicos.index');
 
-
-
     }
 
     public function edit(int $id)
@@ -47,6 +46,36 @@ class ServicoController extends Controller
     [
         'servico' => $servico
     ]);
+
+    }
+
+
+
+    public function update(int $id, Request $request)
+    {
+
+        try {
+            $servico = Servico::findOrFail($id);
+
+            $dados = $request->except(['_token', '_method']);
+
+            $servico->update($dados);
+        } catch (\Throwable  $th) {
+            echo 'Ocorreu um erro : '.$th->getMessage();
+            return ;
+
+        }
+
+        return redirect()->route('servicos.index');
+    //    $servico = Servico::findOrFail($id);
+
+
+    //    return view('servicos.edit',
+    //    [
+    //        'servico' => $servico
+    //    ]);
+
+       //return redirect()->route('servicos.index');
 
     }
 }

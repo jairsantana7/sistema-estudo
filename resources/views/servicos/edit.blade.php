@@ -8,7 +8,9 @@
 
 @section('content')
 
-    <form action="{{route('servicos.store')}}" method="POST" class="row g-3 needs-validation" novalidate>
+    <form action="{{route('servicos.update', $servico)}}" method="POST" class="row g-3 needs-validation" novalidate>
+        @method('put')
+
         @include('servicos._form')
 
     </form>

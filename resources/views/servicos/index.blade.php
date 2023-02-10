@@ -18,11 +18,11 @@
         </thead>
         <tbody>
 
-        @forelse ($servico as $servico)
+        @forelse ($servicos as $servico)
                 <tr>
                     <th>{{$servico->id}}</th>
                     <th>{{$servico->nome}}</th>
-                    <th>action</th>
+                    <th><a class="btn btn-primary btn-sm " href="{{route('servicos.edit', ['servico' => $servico->id])}}">Editar</a></th>
                 </tr>
 
 
@@ -39,10 +39,8 @@
 
         </tbody>
     </table>
-            {{-- @php (dd($servico)) --}}
     <div class="d-flex justify-content-center">
-            {{-- {{dd($servico->links}} --}}
-                {{$servico->links()  }}
+                {{$servicos->links()  }}
     </div>
 
     <div class="float-right">
