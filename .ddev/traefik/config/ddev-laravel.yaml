@@ -1,0 +1,121 @@
+#ddev-generated
+
+http:
+  routers:
+    
+    
+    ddev-laravel-dba-80-http:
+      
+      rule: HostRegexp(`ddev-laravel.ddev.site`)
+      
+      service: "ddev-laravel-dba-80-http"
+      tls: false
+      entrypoints:
+        - http-8036
+    
+    
+    
+    ddev-laravel-web-80-http:
+      
+      rule: HostRegexp(`ddev-laravel.ddev.site`)
+      
+      service: "ddev-laravel-web-80-http"
+      tls: false
+      entrypoints:
+        - http-8050
+    
+    
+    ddev-laravel-web-8025-http:
+      
+      rule: HostRegexp(`ddev-laravel.ddev.site`)
+      
+      service: "ddev-laravel-web-8025-http"
+      tls: false
+      entrypoints:
+        - http-8025
+    
+    
+    
+    
+    
+    ddev-laravel-dba-80-https:
+      
+      rule: HostRegexp(`ddev-laravel.ddev.site`)
+      
+      service: "ddev-laravel-dba-80-https"
+      
+      tls: true
+      
+      entrypoints:
+        - http-8037
+    
+    
+    
+    
+    ddev-laravel-web-80-https:
+      
+      rule: HostRegexp(`ddev-laravel.ddev.site`)
+      
+      service: "ddev-laravel-web-80-https"
+      
+      tls: true
+      
+      entrypoints:
+        - http-8443
+    
+    
+    ddev-laravel-web-8025-https:
+      
+      rule: HostRegexp(`ddev-laravel.ddev.site`)
+      
+      service: "ddev-laravel-web-8025-https"
+      
+      tls: true
+      
+      entrypoints:
+        - http-8026
+    
+    
+
+  services:
+    
+    ddev-laravel-dba-80-http:
+      loadbalancer:
+        servers:
+          - url: http://ddev-ddev-laravel-dba:80
+    
+    ddev-laravel-dba-80-https:
+    
+      loadbalancer:
+        servers:
+          - url: http://ddev-ddev-laravel-dba:80
+    
+    ddev-laravel-web-80-http:
+      loadbalancer:
+        servers:
+          - url: http://ddev-ddev-laravel-web:80
+    
+    ddev-laravel-web-8025-http:
+      loadbalancer:
+        servers:
+          - url: http://ddev-ddev-laravel-web:8025
+    
+    ddev-laravel-web-80-https:
+    
+      loadbalancer:
+        servers:
+          - url: http://ddev-ddev-laravel-web:80
+    
+    ddev-laravel-web-8025-https:
+    
+      loadbalancer:
+        servers:
+          - url: http://ddev-ddev-laravel-web:8025
+    
+
+
+tls:
+  certificates:
+    - certFile: /mnt/ddev-global-cache/traefik/certs/ddev-laravel.crt
+      keyFile: /mnt/ddev-global-cache/traefik/certs/ddev-laravel.key
+

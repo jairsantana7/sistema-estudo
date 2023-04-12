@@ -1,4 +1,4 @@
-name: ddev-laravel
+name: laravel-clean-arch
 type: laravel
 docroot: "./public"
 php_version: "8.0"
